@@ -1,64 +1,64 @@
 import math
 
-def addVectors(vector1, vector2):
+def add_vectors(vector_a, vector_b):
     """
     Adds two vectors element-wise.
 
     Parameters:
-    - vector1: The first vector (list of numbers).
-    - vector2: The second vector (list of numbers).
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
 
     Returns:
     A new vector resulting from the element-wise addition.
     """
-    if len(vector1) != len(vector2):
+    if len(vector_a) != len(vector_b):
         raise ValueError('Vectors must have the same number of coordinates')
-    return [v1 + v2 for v1, v2 in zip(vector1, vector2)]
+    return [a + b for a, b in zip(vector_a, vector_b)]
 
-def subtractVectors(vector1, vector2):
+def subtract_vectors(vector_a, vector_b):
     """
     Subtracts one vector from another element-wise.
 
     Parameters:
-    - vector1: The vector from which to subtract (list of numbers).
-    - vector2: The vector to subtract (list of numbers).
+    - vector_a: The vector from which to subtract (list of numbers).
+    - vector_b: The vector to subtract (list of numbers).
 
     Returns:
     A new vector resulting from the element-wise subtraction.
     """
-    if len(vector1) != len(vector2):
+    if len(vector_a) != len(vector_b):
         raise ValueError('Vectors must have the same number of coordinates')
-    return [v1 - v2 for v1, v2 in zip(vector1, vector2)]
+    return [a - b for a, b in zip(vector_a, vector_b)]
 
-def calculateDotProduct(vector1, vector2):
+def dot_product(vector_a, vector_b):
     """
     Calculates the dot product of two vectors.
 
     Parameters:
-    - vector1: The first vector (list of numbers).
-    - vector2: The second vector (list of numbers).
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
 
     Returns:
     The dot product of the two input vectors.
     """
-    if len(vector1) != len(vector2):
+    if len(vector_a) != len(vector_b):
         raise ValueError('Vectors must have the same number of coordinates')
-    return sum(v1 * v2 for v1, v2 in zip(vector1, vector2))
+    return sum(a * b for a, b in zip(vector_a, vector_b))
 
-def areOrthogonal(vector1, vector2):
+def are_orthogonal(vector_a, vector_b):
     """
     Checks if two vectors are orthogonal (perpendicular).
 
     Parameters:
-    - vector1: The first vector (list of numbers).
-    - vector2: The second vector (list of numbers).
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
 
     Returns:
     True if the vectors are orthogonal, False otherwise.
     """
-    return calculateDotProduct(vector1, vector2) == 0
+    return dot_product(vector_a, vector_b) == 0
 
-def calculateLength(vector):
+def vector_length(vector):
     """
     Calculates the length (magnitude) of a vector.
 
@@ -70,25 +70,25 @@ def calculateLength(vector):
     """
     return math.sqrt(sum(coord**2 for coord in vector))
 
-def calculateAngleBetweenVectors(vector1, vector2):
+def angle_between_vectors(vector_a, vector_b):
     """
     Calculates the angle (in degrees) between two vectors.
 
     Parameters:
-    - vector1: The first vector (list of numbers).
-    - vector2: The second vector (list of numbers).
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
 
     Returns:
     The angle between the two input vectors in degrees.
     """
-    length1 = calculateLength(vector1)
-    length2 = calculateLength(vector2)
-    dotProduct = calculateDotProduct(vector1, vector2)
-    cosTheta = dotProduct / (length1 * length2)
-    theta = math.acos(cosTheta)
+    length_a = vector_length(vector_a)
+    length_b = vector_length(vector_b)
+    dot_product_value = dot_product(vector_a, vector_b)
+    cos_theta = dot_product_value / (length_a * length_b)
+    theta = math.acos(cos_theta)
     return math.degrees(theta)
 
-def scalarMultiplication(scalar, vector):
+def scalar_multiply(scalar, vector):
     """
     Performs scalar multiplication on a vector.
 
@@ -101,7 +101,7 @@ def scalarMultiplication(scalar, vector):
     """
     return [scalar * coord for coord in vector]
 
-def calculateUnitVector(vector):
+def unit_vector(vector):
     """
     Calculates the unit vector of a given vector.
 
@@ -111,20 +111,20 @@ def calculateUnitVector(vector):
     Returns:
     The unit vector of the input vector.
     """
-    length = calculateLength(vector)
-    return scalarMultiplication(1/length, vector)
+    length = vector_length(vector)
+    return scalar_multiply(1/length, vector)
 
-def areParallel(vector1, vector2):
+def are_parallel(vector_a, vector_b):
     """
     Checks if two vectors are parallel.
 
     Parameters:
-    - vector1: The first vector (list of numbers).
-    - vector2: The second vector (list of numbers).
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
 
     Returns:
     True if the vectors are parallel, False otherwise.
     """
-    unit_vector1 = calculateUnitVector(vector1)
-    unit_vector2 = calculateUnitVector(vector2)
-    return unit_vector1 == unit_vector2
+    unit_vector_a = unit_vector(vector_a)
+    unit_vector_b = unit_vector(vector_b)
+    return unit_vector_a == unit_vector_b
