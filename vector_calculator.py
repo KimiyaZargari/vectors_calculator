@@ -131,11 +131,12 @@ def are_parallel(vector_a, vector_b):
 
 def project_a_to_b(vector_a, vector_b):
     """
-    Calculates the projection of vector_a onto vector_b.
+   Calculates the projection of vector_a onto vector_b.
 
-    Parameters:
-    - vector_a: The first vector (list of numbers).
-    - vector_b: The second vector (list of numbers).
+     Parameters:
+    - vector_a: The vector to be projected (list of numbers).
+    - vector_b: The vector onto which to project (list of numbers).
+
 
     Returns:
     The projection of vector_a onto vector_b.
@@ -144,4 +145,18 @@ def project_a_to_b(vector_a, vector_b):
     result = scalar_multiply(dot_product(vector_a, unit_vector_b), unit_vector_b)
     return result
 
+def orthogonal_component_of_a_onto_b(vector_a, vector_b):
+    """
+    Calculates the orthogonal component of vector_a onto vector_b.
+
+    Parameters:
+    - vector_a: The vector to be decomposed (list of numbers).
+    - vector_b: The vector along which to find the orthogonal component (list of numbers).
+
+    Returns:
+    The orthogonal component of vector_a onto vector_b.
+    """
+    projection_of_a_onto_b = project_a_to_b(vector_a, vector_b)
+    orthogonal_component = subtract_vectors(vector_a, projection_of_a_onto_b)
+    return orthogonal_component
 
