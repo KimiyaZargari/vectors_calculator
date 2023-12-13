@@ -56,3 +56,11 @@ def scalarMultiplication(scalar, vector):
     result = []
     for coordinate in vector: 
       result.append(scalar * coordinate)
+    return result
+
+#rerurns unit vector of input
+def calculateUnitVector(vector):
+    length = calculateLength(vector)
+    return scalarMultiplication(1/length, vector)
+
+
