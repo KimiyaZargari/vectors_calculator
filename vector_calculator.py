@@ -29,12 +29,11 @@ def calculateDotProduct(vector1, vector2):
         for coordinatesTuple in zip(vector1, vector2):
             result += coordinatesTuple[0] * coordinatesTuple[1]
         return result
+    
 #returns whether the two input vectors are orthogonal 
 def areOrthogonal(vector1, vector2):
-    if calculateDotProduct(vector1, vector2) == 0:
-        return True
-    return False
-
+    return  calculateDotProduct(vector1, vector2) == 0
+        
 #returns the lebgth of the input vector
 def calculateLength(vector):
     length = 0
@@ -63,4 +62,6 @@ def calculateUnitVector(vector):
     length = calculateLength(vector)
     return scalarMultiplication(1/length, vector)
 
-
+#returns whether the two vetors are parallel
+def areParallel(vector1, vector2):
+    return calculateUnitVector(vector1) == calculateUnitVector(vector2)
