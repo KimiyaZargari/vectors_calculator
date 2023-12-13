@@ -51,3 +51,8 @@ def calculateAngleBetweenVectors(vector1, vector2):
     theta =  math.acos(cosTheta)
     return theta * 180 / math.pi
 
+#return the scalar multiplication of vector
+def scalarMultiplication(scalar, vector):
+    result = []
+    for coordinate in vector: 
+      result.append(scalar * coordinate)
