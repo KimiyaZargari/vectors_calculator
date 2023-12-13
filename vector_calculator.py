@@ -1,3 +1,5 @@
+import math
+
 #adds vector1 and vector2 and returns the result
 def addVectors(vector1, vector2):
     if len(vector1) != len(vector2):
@@ -33,4 +35,12 @@ def areOrthogonal(vector1, vector2):
         return True
     return False
 
-        
+#returns the lebgth of the input vector
+def calculateLength(vector):
+    length = 0
+    for coordinate in vector: 
+        length += coordinate * coordinate
+    return math.sqrt(length)
+
+
+    
