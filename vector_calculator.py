@@ -1,67 +1,42 @@
 import math
 
-#adds vector1 and vector2 and returns the result
 def addVectors(vector1, vector2):
     if len(vector1) != len(vector2):
-        raise IndexError('Vectors must have the same numbers of coordinates')   
-    else:
-        result = []
-        for coordinatesTuple in zip(vector1, vector2):
-            result.append(sum(coordinatesTuple))
-        return result
+        raise ValueError('Vectors must have the same number of coordinates')
+    return [v1 + v2 for v1, v2 in zip(vector1, vector2)]
 
-#adds vector2 from vector1 and returns the result   
 def subtractVectors(vector1, vector2):
     if len(vector1) != len(vector2):
-        raise IndexError('Vectors must have the same numbers of coordinates')   
-    else:
-        result = []
-        for coordinatesTuple in zip(vector1, vector2):
-            result.append(coordinatesTuple[0] - coordinatesTuple[1])
-        return result
+        raise ValueError('Vectors must have the same number of coordinates')
+    return [v1 - v2 for v1, v2 in zip(vector1, vector2)]
 
-#returns the dot product of vector1 and vector2
 def calculateDotProduct(vector1, vector2):
-     if len(vector1) != len(vector2):
-        raise IndexError('Vectors must have the same numbers of coordinates')   
-     else:
-        result = 0
-        for coordinatesTuple in zip(vector1, vector2):
-            result += coordinatesTuple[0] * coordinatesTuple[1]
-        return result
-    
-#returns whether the two input vectors are orthogonal 
-def areOrthogonal(vector1, vector2):
-    return  calculateDotProduct(vector1, vector2) == 0
-        
-#returns the lebgth of the input vector
-def calculateLength(vector):
-    length = 0
-    for coordinate in vector: 
-        length += coordinate * coordinate
-    return math.sqrt(length)
+    if len(vector1) != len(vector2):
+        raise ValueError('Vectors must have the same number of coordinates')
+    return sum(v1 * v2 for v1, v2 in zip(vector1, vector2))
 
-#return the angle between the two vectors in degrees
+def areOrthogonal(vector1, vector2):
+    return calculateDotProduct(vector1, vector2) == 0
+
+def calculateLength(vector):
+    return math.sqrt(sum(coord**2 for coord in vector))
+
 def calculateAngleBetweenVectors(vector1, vector2):
     length1 = calculateLength(vector1)
     length2 = calculateLength(vector2)
     dotProduct = calculateDotProduct(vector1, vector2)
     cosTheta = dotProduct / (length1 * length2)
-    theta =  math.acos(cosTheta)
-    return theta * 180 / math.pi
+    theta = math.acos(cosTheta)
+    return math.degrees(theta)
 
-#return the scalar multiplication of vector
 def scalarMultiplication(scalar, vector):
-    result = []
-    for coordinate in vector: 
-      result.append(scalar * coordinate)
-    return result
+    return [scalar * coord for coord in vector]
 
-#rerurns unit vector of input
 def calculateUnitVector(vector):
     length = calculateLength(vector)
     return scalarMultiplication(1/length, vector)
 
-#returns whether the two vetors are parallel
 def areParallel(vector1, vector2):
-    return calculateUnitVector(vector1) == calculateUnitVector(vector2)
+    unit_vector1 = calculateUnitVector(vector1)
+    unit_vector2 = calculateUnitVector(vector2)
+    return unit_vector1 == unit_vector2
