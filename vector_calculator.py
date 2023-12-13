@@ -128,3 +128,20 @@ def are_parallel(vector_a, vector_b):
     unit_vector_a = unit_vector(vector_a)
     unit_vector_b = unit_vector(vector_b)
     return unit_vector_a == unit_vector_b
+
+def project_a_to_b(vector_a, vector_b):
+    """
+    Calculates the projection of vector_a onto vector_b.
+
+    Parameters:
+    - vector_a: The first vector (list of numbers).
+    - vector_b: The second vector (list of numbers).
+
+    Returns:
+    The projection of vector_a onto vector_b.
+    """
+    unit_vector_b = unit_vector(vector_b)
+    result = scalar_multiply(dot_product(vector_a, unit_vector_b), unit_vector_b)
+    return result
+
+
