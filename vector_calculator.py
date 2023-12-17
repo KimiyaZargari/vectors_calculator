@@ -159,4 +159,25 @@ def orthogonal_component_of_a_onto_b(vector_a, vector_b):
     projection_of_a_onto_b = project_a_to_b(vector_a, vector_b)
     orthogonal_component = subtract_vectors(vector_a, projection_of_a_onto_b)
     return orthogonal_component
+def cross_product(vector_a, vector_b):
+    """
+    Calculates the cross product of two 3D vectors.
+
+    Parameters:
+    - vector_a: The first 3D vector (list of numbers with length 3).
+    - vector_b: The second 3D vector (list of numbers with length 3).
+
+    Returns:
+    The cross product of vector_a and vector_b.
+    """
+    if len(vector_a) != 3 or len(vector_b) != 3:
+        raise ValueError('Cross product is defined only for 3D vectors')
+    
+    result = [
+        vector_a[1] * vector_b[2] - vector_a[2] * vector_b[1],
+        vector_a[2] * vector_b[0] - vector_a[0] * vector_b[2],
+        vector_a[0] * vector_b[1] - vector_a[1] * vector_b[0]
+    ]
+    
+    return result
 
